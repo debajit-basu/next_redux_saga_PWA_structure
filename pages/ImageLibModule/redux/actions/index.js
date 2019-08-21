@@ -12,11 +12,15 @@ const setImages =  (images) => (
 const setError =  (error) => (
     { type: IMAGES.LOAD_FAIL, error }
 )
+const detailView = (index) => (
+    { type: DETAIL_VIEW , index }
+)
 
 
 export {
     loadImages,
     setImages,
-    setError
+    setError,
+    detailView
 }
 

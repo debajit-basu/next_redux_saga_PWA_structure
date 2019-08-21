@@ -2,6 +2,7 @@ import React ,{ Component } from 'react';
 import { connect } from 'react-redux';
 import { loadImages } from "./redux/actions/index";
 import Page from '../../components/page';
+import {Router} from '../../routes';
 
 class ImageGrid extends Component{
     constructor(props) {
@@ -14,6 +15,18 @@ class ImageGrid extends Component{
             imageHeight: 480,
             collectionID: 1163637
         }
+    }
+
+
+    detailView(index){
+        // With route name and params
+        // Router.pushRoute('blog', {slug: 'hello-world'})
+        // With route URL
+       // Router.pushRoute('/blog/hello-world')
+
+       Router.pushRoute('detailView', {id: index});
+
+       console.log("in deatilsView method" , index);
     }
 
     componentDidMount() {
@@ -40,7 +53,7 @@ class ImageGrid extends Component{
     render() {
         // console.log("ImageGrid inside render");
         // console.log(this.props);
-        console.log(this.props.loading);
+        // console.log(this.props.image.images);
 
         return(
             <>
@@ -49,7 +62,8 @@ class ImageGrid extends Component{
                 </div>
                 {
                     this.props.image.images.length > 0 && this.props.image.images.map((val,i) => (
-                        <img key={i} className="m-1" src={val}  alt="not-found"/>
+                        <img key={i} className="m-1" src={val}  
+                        alt="not-found" onClick={this.detailView.bind(this,i)}/>
 
                     ))
                 }
@@ -63,7 +77,6 @@ class ImageGrid extends Component{
                                            
                 }
                 </div>
-
 
             </>
         )
